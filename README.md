@@ -1,27 +1,28 @@
-# Library AI Agent
+# Library Management System with AI Assistant
 
-An intelligent, data science-driven library management system that leverages artificial intelligence and machine learning to enhance library operations and user experience at LJ University.
+A comprehensive library management system with AI-powered conversational interface, built for LJ University. Features intelligent search, natural language processing, and automated assistance using Groq's Llama3 model.
 
 ## Overview
 
-The Library AI Agent is a sophisticated system that combines traditional library management with modern AI capabilities, providing intelligent search, natural language processing, and automated assistance for library operations.
+The Library Management System combines traditional library operations with modern AI capabilities, providing users with a conversational interface to search books, manage members, track transactions, and get intelligent assistance.
 
 ## Key Features
 
 ### AI-Powered Capabilities
-- **Natural Language Interface**: Users can interact with the system using conversational language
-- **Intelligent Search**: Google-like search functionality with contextual understanding
-- **AI Agent Integration**: Powered by Google Gemini for intelligent query processing
-- **SQL Agent**: Automated database query generation and execution
+- **Natural Language Interface**: Chat with the AI assistant in Hindi or English
+- **Intelligent Search**: Google-like conversational search with contextual understanding
+- **AI Integration**: Powered by Groq's Llama3 model (free, fast inference)
+- **Database-Aware**: AI has context of library database for intelligent responses
 
 ### Library Management
-- **Book Management**: Complete CRUD operations for book inventory
-- **Member Management**: User registration and management system
+- **Book Management**: Complete CRUD operations for book inventory with pricing
+- **Member Management**: User registration and department-based organization
 - **Transaction Tracking**: Issue/return operations with automated tracking
-- **Sales Integration**: Book purchasing functionality with pricing management
+- **Sales Integration**: Book purchasing functionality with payment tracking
+- **Multi-Database Support**: Switch between different library databases
 
 ### Technical Features
-- **Real-time Database Operations**: SQLite backend with optimized queries
+- **Real-time Database Operations**: MySQL backend with optimized queries
 - **Responsive Web Interface**: Streamlit-based user interface
 - **Session Management**: Persistent chat history and user sessions
 - **Error Handling**: Robust error management and user feedback
@@ -30,43 +31,42 @@ The Library AI Agent is a sophisticated system that combines traditional library
 
 ### Technology Stack
 - **Frontend**: Streamlit (Python web framework)
-- **Backend**: SQLAlchemy with SQLite database
-- **AI/ML**: Google Gemini API with intelligent context-aware responses
-- **Database**: SQLite with relational schema design
+- **Backend**: SQLAlchemy with MySQL database
+- **AI/ML**: Groq API with Llama3 model (free, fast)
+- **Database**: MySQL with relational schema design
 
 ### System Components
-1. **Database Layer**: Structured SQLite database with books, members, and transactions
-2. **AI Agent Layer**: Google Gemini integration with database context processing
-3. **Application Layer**: Streamlit web application with user interface
-4. **Integration Layer**: Seamless connection between AI capabilities and database operations
+1. **Database Layer**: MySQL database with books, members, transactions, and sales
+2. **AI Agent Layer**: Groq Llama3 integration with database context
+3. **Application Layer**: Streamlit web application with modular structure
+4. **Integration Layer**: Dynamic database connection and management
 
 ## Installation & Setup
 
 ### Prerequisites
 ```bash
-pip install streamlit sqlalchemy pymysql google-generativeai
+pip install streamlit sqlalchemy pymysql groq
 ```
 
-### AI Setup (Optional)
-To enable AI-powered responses, get a free Gemini API key:
-1. Visit: https://makersuite.google.com/app/apikey
-2. Create API key and set as environment variable:
+### AI Setup (Required for AI features)
+To enable AI-powered responses, get a free Groq API key:
+1. Visit: https://console.groq.com
+2. Sign up (free) and create API key
+3. Set as environment variable:
 ```bash
-set GEMINI_API_KEY=your_api_key_here
+set GROQ_API_KEY=your_api_key_here
 ```
-Note: If no API key is provided, the system works in rule-based mode.
+Or enter it in the sidebar when running the application.
 
 ### Database Setup
 ```bash
 # Run the database setup script
-python setup_library_db.py
-# For enhanced features
-python enhanced_library_setup.py
+mysql -u root -p < setup_databases.sql
 ```
 
 ### Running the Application
 ```bash
-# Run the modular version
+# Run the main application
 streamlit run main_app.py
 
 # Or using Python module
@@ -78,17 +78,20 @@ python -m streamlit run main_app.py
 ```
 library/
 |-- README.md                    # Project documentation
-|-- requirements.txt             # Python dependencies
 |-- main_app.py                  # Main Streamlit application
-|-- ai_assistant.py              # AI Assistant with Gemini integration
+|-- ai_assistant_groq.py         # AI Assistant with Groq integration
+|-- ai_assistant_simple.py       # Simple rule-based AI (backup)
 |-- book_management.py           # Book operations module
 |-- member_management.py         # Member operations module
 |-- sales_management.py          # Book sales module
 |-- transaction_management.py    # Book issue/return module
 |-- db_connection.py             # Database connection handler
-|-- mysql_library_setup.sql      # SQL schema definition
+|-- database_config.py           # Database configuration page
+|-- setup_databases.sql          # SQL schema and sample data
+|-- update_book_prices.sql       # Script to add prices to existing books
+|-- apply_prices.py              # Python script to apply prices
+|-- check_books.py               # Script to check book data
 |-- .gitignore                   # Git ignore rules
-|-- .streamlit/                  # Streamlit configuration
 ```
 
 ## Database Schema

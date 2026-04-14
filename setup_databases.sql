@@ -56,13 +56,13 @@ CREATE TABLE IF NOT EXISTS book_sales (
 );
 
 -- Sample data for history_library_db
-INSERT INTO books (title, author, category, year_published, isbn, total_copies, available_copies) VALUES
-('The Fall of Rome', 'Bryan Ward-Perkins', 'Ancient History', 2005, '978-0-19-926186-3', 5, 3),
-('Ancient Egypt: A Very Short Introduction', 'Ian Shaw', 'Ancient History', 2004, '978-0-19-280419-9', 4, 2),
-('The Medieval Crusades', 'Jonathan Phillips', 'Medieval History', 2005, '978-0-375-41389-2', 6, 4),
-('A History of Medieval Europe', 'Peter Brown', 'Medieval History', 2003, '978-0-631-18959-8', 5, 3),
-('Modern History: From 1500 to Present', 'Richard Overy', 'Modern History', 2010, '978-0-06-174730-1', 7, 5),
-('The 20th Century in Pictures', 'Philip Parker', 'Modern History', 2008, '978-1-4053-3350-6', 8, 6);
+INSERT INTO books (title, author, category, year_published, isbn, total_copies, available_copies, for_sale, sale_price) VALUES
+('The Fall of Rome', 'Bryan Ward-Perkins', 'Ancient History', 2005, '978-0-19-926186-3', 5, 3, 1, 25.99),
+('Ancient Egypt: A Very Short Introduction', 'Ian Shaw', 'Ancient History', 2004, '978-0-19-280419-9', 4, 2, 1, 15.99),
+('The Medieval Crusades', 'Jonathan Phillips', 'Medieval History', 2005, '978-0-375-41389-2', 6, 4, 1, 29.99),
+('A History of Medieval Europe', 'Peter Brown', 'Medieval History', 2003, '978-0-631-18959-8', 5, 3, 1, 35.99),
+('Modern History: From 1500 to Present', 'Richard Overy', 'Modern History', 2010, '978-0-06-174730-1', 7, 5, 1, 45.99),
+('The 20th Century in Pictures', 'Philip Parker', 'Modern History', 2008, '978-1-4053-3350-6', 8, 6, 1, 39.99);
 
 INSERT INTO library_members (name, email, phone, member_type, department, status) VALUES
 ('Raj Kumar', 'raj@college.com', '9876543210', 'Student', 'History', 'Active'),
@@ -128,15 +128,15 @@ CREATE TABLE IF NOT EXISTS book_sales (
 );
 
 -- Sample data for programming_library_db
-INSERT INTO books (title, author, category, year_published, isbn, total_copies, available_copies) VALUES
-('PHP 8 in Action', 'Mike Vanier', 'PHP', 2021, '978-1617296444', 5, 3),
-('Modern PHP', 'Josh Lockhart', 'PHP', 2015, '978-1491905173', 4, 2),
-('Python Crash Course', 'Eric Matthes', 'Python', 2019, '978-1492051274', 8, 6),
-('Fluent Python', 'Luciano Ramalho', 'Python', 2015, '978-1491946008', 6, 4),
-('Head First Java', 'Bert Bates', 'Java', 2005, '978-0596009205', 7, 5),
-('Effective Java', 'Joshua Bloch', 'Java', 2018, '978-0134685991', 5, 3),
-('Web Development with Node.js', 'Alex Young', 'Web Dev', 2018, '978-1491902288', 4, 2),
-('The Pragmatic Programmer', 'Dave Thomas', 'Web Dev', 2019, '978-0135957059', 6, 4);
+INSERT INTO books (title, author, category, year_published, isbn, total_copies, available_copies, for_sale, sale_price) VALUES
+('PHP 8 in Action', 'Mike Vanier', 'PHP', 2021, '978-1617296444', 5, 3, 1, 49.99),
+('Modern PHP', 'Josh Lockhart', 'PHP', 2015, '978-1491905173', 4, 2, 1, 39.99),
+('Python Crash Course', 'Eric Matthes', 'Python', 2019, '978-1492051274', 8, 6, 1, 44.99),
+('Fluent Python', 'Luciano Ramalho', 'Python', 2015, '978-1491946008', 6, 4, 1, 59.99),
+('Head First Java', 'Bert Bates', 'Java', 2005, '978-0596009205', 7, 5, 1, 54.99),
+('Effective Java', 'Joshua Bloch', 'Java', 2018, '978-0134685991', 5, 3, 1, 64.99),
+('Web Development with Node.js', 'Alex Young', 'Web Dev', 2018, '978-1491902288', 4, 2, 1, 42.99),
+('The Pragmatic Programmer', 'Dave Thomas', 'Web Dev', 2019, '978-0135957059', 6, 4, 1, 47.99);
 
 INSERT INTO library_members (name, email, phone, member_type, department, status) VALUES
 ('Amit Verma', 'amit@college.com', '9876543220', 'Student', 'CSE', 'Active'),
@@ -203,17 +203,17 @@ CREATE TABLE IF NOT EXISTS book_sales (
 );
 
 -- Sample data for novel_library_db
-INSERT INTO books (title, author, category, year_published, isbn, total_copies, available_copies) VALUES
-('Pride and Prejudice', 'Jane Austen', 'Romantic', 1813, '978-0143039990', 4, 2),
-('The Notebook', 'Nicholas Sparks', 'Romantic', 1996, '978-0446676952', 5, 3),
-('Outlander', 'Diana Gabaldon', 'Romantic', 1991, '978-0385333696', 3, 2),
-('A Walk to Remember', 'Nicholas Sparks', 'Romantic', 1999, '978-0446577199', 4, 2),
-('The Girl with the Dragon Tattoo', 'Stieg Larsson', 'Thriller', 2005, '978-0307269935', 6, 4),
-('Gone Girl', 'Gillian Flynn', 'Thriller', 2012, '978-0553842662', 5, 3),
-('The Silence of the Lambs', 'Thomas Harris', 'Thriller', 1991, '978-0312924578', 4, 2),
-('The Great Gatsby', 'F. Scott Fitzgerald', 'Fiction', 1925, '978-0743273565', 7, 5),
-('To Kill a Mockingbird', 'Harper Lee', 'Fiction', 1960, '978-0061120084', 6, 4),
-('1984', 'George Orwell', 'Fiction', 1949, '978-0451524935', 5, 3);
+INSERT INTO books (title, author, category, year_published, isbn, total_copies, available_copies, for_sale, sale_price) VALUES
+('Pride and Prejudice', 'Jane Austen', 'Romantic', 1813, '978-0143039990', 4, 2, 1, 12.99),
+('The Notebook', 'Nicholas Sparks', 'Romantic', 1996, '978-0446676952', 5, 3, 1, 14.99),
+('Outlander', 'Diana Gabaldon', 'Romantic', 1991, '978-0385333696', 3, 2, 1, 18.99),
+('A Walk to Remember', 'Nicholas Sparks', 'Romantic', 1999, '978-0446577199', 4, 2, 1, 13.99),
+('The Girl with the Dragon Tattoo', 'Stieg Larsson', 'Thriller', 2005, '978-0307269935', 6, 4, 1, 16.99),
+('Gone Girl', 'Gillian Flynn', 'Thriller', 2012, '978-0553842662', 5, 3, 1, 15.99),
+('The Silence of the Lambs', 'Thomas Harris', 'Thriller', 1991, '978-0312924578', 4, 2, 1, 14.99),
+('The Great Gatsby', 'F. Scott Fitzgerald', 'Fiction', 1925, '978-0743273565', 7, 5, 1, 11.99),
+('To Kill a Mockingbird', 'Harper Lee', 'Fiction', 1960, '978-0061120084', 6, 4, 1, 13.99),
+('1984', 'George Orwell', 'Fiction', 1949, '978-0451524935', 5, 3, 1, 12.99);
 
 INSERT INTO library_members (name, email, phone, member_type, department, status) VALUES
 ('Deepak Verma', 'deepak@college.com', '9876543230', 'Student', 'Arts', 'Active'),

@@ -16,7 +16,7 @@ from book_management import book_management_page
 from member_management import member_management_page, member_history_page
 from transaction_management import transaction_management_page
 from sales_management import sales_management_page
-from ai_assistant_simple import ai_assistant_page
+from ai_assistant_groq import ai_assistant_page
 
 # PAGE CONFIG
 st.set_page_config(page_title="LJ University Library Management", layout="wide")
