@@ -1,0 +1,6 @@
+@echo off
+echo Activating virtual environment...
+call venv\Scripts\activate.bat
+echo Starting Library Management System...
+python -m streamlit run main_app.py
+pause
