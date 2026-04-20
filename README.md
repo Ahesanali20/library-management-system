@@ -80,7 +80,6 @@ library/
 |-- README.md                    # Project documentation
 |-- main_app.py                  # Main Streamlit application
 |-- ai_assistant_groq.py         # AI Assistant with Groq integration
-|-- ai_assistant_simple.py       # Simple rule-based AI (backup)
 |-- book_management.py           # Book operations module
 |-- member_management.py         # Member operations module
 |-- sales_management.py          # Book sales module
@@ -88,9 +87,6 @@ library/
 |-- db_connection.py             # Database connection handler
 |-- database_config.py           # Database configuration page
 |-- setup_databases.sql          # SQL schema and sample data
-|-- update_book_prices.sql       # Script to add prices to existing books
-|-- apply_prices.py              # Python script to apply prices
-|-- check_books.py               # Script to check book data
 |-- .gitignore                   # Git ignore rules
 ```
 
