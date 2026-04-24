@@ -317,6 +317,20 @@ Guidelines:
             except:
                 pass
             
+            # Get language preference
+            lang = st.session_state.get("ai_language", "English")
+            
+            # Auto-detect language from user input if not set to "Auto"
+            if lang == "Auto":
+                # Detect from input keywords
+                hindi_keywords = ['kya', 'kaun', 'kaise', 'kaha', 'kab', 'kyun', 'kitna', 'kitne', 'koi', 'sabhi', 'saare', 'mujhe', 'hame', 'aap', 'tum', 'mera', 'tera', 'hamara', 'unka', 'iska', 'uska', 'hai', 'hain', 'tha', 'thay', 'ho', 'ga', 'ge', 'gi', 'na', 'se', 'ko', 'me', 'mein', 'par', 'ke', 'ka', 'ki', 'ko', 'bhi', 'to', 'phir', 'lekin', 'aur', 'ya', 'yaa', 'le', 'lo', 'liya', 'diya', 'kiya', 'hua', 'hui', 'huye']
+                user_words = user_input.lower().split()
+                hindi_count = sum(1 for word in user_words if word in hindi_keywords)
+                lang = "Hindi" if hindi_count >= 1 else "English"
+            
+            # Set language instruction for the AI
+            lang_instruction = "Respond in Hindi" if lang == "Hindi" else "Respond in English"
+            
             messages = [
                 {
                     "role": "system",
@@ -330,7 +344,7 @@ You are an intelligent AI assistant. When users ask about books or members:
 - Be conversational and natural like ChatGPT
 - If you need to search the database for specific information, suggest they use the appropriate page
 - Always be helpful and friendly
-- Answer in the same language as the user (Hindi or English)
+- **{lang_instruction}**
 """
                 },
                 {
@@ -377,8 +391,22 @@ def ai_assistant_page():
 - Fast inference
 - No cost
         """)
-    
-    st.info("💡 Ask me anything about the library in Hindi or English!")
+        
+        # Language preference
+        st.subheader("🌐 Language / भाषा")
+        language_options = ["English", "Hindi", "Auto"]
+        current_lang = st.session_state.get("ai_language", "English")
+        default_index = language_options.index(current_lang) if current_lang in language_options else 0
+        selected_lang = st.radio(
+            "Select language / भाषा चुनें:",
+            language_options,
+            index=default_index,
+            key="ai_language_radio"
+        )
+        st.session_state["ai_language"] = selected_lang
+        
+        if selected_lang == "Auto":
+            st.caption("🌍 Auto-detects language from your messages")
     
     # Initialize AI
     ai = GroqAI()
@@ -391,6 +419,10 @@ def ai_assistant_page():
     for message in st.session_state.chat_history:
         with st.chat_message(message["role"]):
             st.write(message["content"])
+    
+    # Show welcome message if no chat history
+    if not st.session_state.chat_history:
+        st.info("👋 Welcome! Ask me anything about the library in Hindi or English!")
     
     # User input
     user_input = st.chat_input("Ask me anything...")
