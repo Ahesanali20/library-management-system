@@ -154,6 +154,15 @@ def sell_book_form():
             selected_member = st.selectbox("Select Customer:", member_options)
             quantity = st.number_input("Quantity:", min_value=1, value=1, step=1)
             
+            # Display selected book details
+            if selected_book:
+                book_id = int(selected_book.split(" - ")[0])
+                selected_book_obj = next(
+                    (b for b in books if b.book_id == book_id), None)
+                if selected_book_obj:
+                    st.info(
+                        f"📖 **Book Details:** {selected_book_obj.title} by {selected_book_obj.author} | Available: {selected_book_obj.available_copies} copies | Price: ${selected_book_obj.sale_price} each")
+
             if st.form_submit_button("Sell Book"):
                 book_id = int(selected_book.split(" - ")[0])
                 
@@ -180,16 +189,17 @@ def display_sales_history():
     
     search_term = st.text_input("Search sales:")
     
-    if search_term:
-        result = SalesManager.get_sales_history(search_term)
-        sales = result.fetchall() if result else []
-        
-        if sales:
-            st.write(f"**Found {len(sales)} sales:**")
-            for sale in sales:
-                st.write(f"**ID: {sale.sale_id}** - {sale.title} sold on {sale.sale_date} - Quantity: {sale.quantity} - Price: ${sale.price}")
-        else:
-            st.info("No sales found.")
+    # Always show sales history (with or without search)
+    result = SalesManager.get_sales_history(search_term)
+    sales = result.fetchall() if result else []
+
+    if sales:
+        st.write(f"**Found {len(sales)} sales:**")
+        for sale in sales:
+            st.write(
+                f"**ID: {sale.sale_id}** - {sale.title} sold on {sale.sale_date} - Quantity: {sale.quantity} - Price: ${sale.price}")
+    else:
+        st.info("No sales found.")
 
 def display_sales_summary():
     """Display sales summary dashboard"""

@@ -129,11 +129,11 @@ class BookManager:
         """Get books available for sale with schema detection"""
         try:
             # Try with book_id first (new schema)
-            query = "SELECT book_id, title, sale_price FROM books WHERE for_sale = 1 ORDER BY title"
+            query = "SELECT book_id, title, author, sale_price, available_copies FROM books WHERE for_sale = 1 ORDER BY title"
             return db_connection.execute_query(query)
         except:
             # Fallback to id (old schema)
-            query = "SELECT id, title, sale_price FROM books WHERE for_sale = 1 ORDER BY title"
+            query = "SELECT id as book_id, title, author, sale_price, available_copies FROM books WHERE for_sale = 1 ORDER BY title"
             return db_connection.execute_query(query)
 
 def display_books():
